@@ -2,7 +2,7 @@ package com.arka.arkaperez.infrastructure.adapter.in.web;
 
 import com.arka.arkaperez.domain.model.Product;
 import com.arka.arkaperez.domain.port.in.ProductUseCase;
-import com.arka.arkaperez.infrastructure.adapter.in.web.dto.ProductDTO;
+import com.arka.arkaperez.infrastructure.adapter.in.web.dto.ProductDto;
 import com.arka.arkaperez.infrastructure.adapter.in.web.mapper.ProductWebMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,33 +24,33 @@ public class ProductController {
   }
 
   @GetMapping
-  public ResponseEntity<List<ProductDTO>> getAllProducts() {
+  public ResponseEntity<List<ProductDto>> getAllProducts() {
     List<Product> products = productUseCase.getAllProducts();
-    List<ProductDTO> productsDTO = webMapper.toDTO(products);
+    List<ProductDto> productsDTO = webMapper.toDTO(products);
     return ResponseEntity.ok(productsDTO);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
+  public ResponseEntity<ProductDto> getProductById(@PathVariable Long id) {
     Product product = productUseCase.getProductById(id);
-    ProductDTO productDTO = webMapper.toDTO(product);
+    ProductDto productDTO = webMapper.toDTO(product);
     return ResponseEntity.ok(productDTO);
   }
 
   @PostMapping
-  public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) {
+  public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDTO) {
     Product product = webMapper.toDomain(productDTO);
     Product savedProduct = productUseCase.createProduct(product);
-    ProductDTO savedProductDTO = webMapper.toDTO(savedProduct);
+    ProductDto savedProductDTO = webMapper.toDTO(savedProduct);
     return ResponseEntity.status(HttpStatus.CREATED).body(savedProductDTO);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id,
-      @RequestBody ProductDTO productDTO) {
+  public ResponseEntity<ProductDto> updateProduct(@PathVariable Long id,
+      @RequestBody ProductDto productDTO) {
     Product product = webMapper.toDomain(productDTO);
     Product updatedProduct = productUseCase.updateProduct(id, product);
-    ProductDTO updatedProductDTO = webMapper.toDTO(updatedProduct);
+    ProductDto updatedProductDTO = webMapper.toDTO(updatedProduct);
     return ResponseEntity.ok(updatedProductDTO);
   }
 
@@ -61,32 +61,32 @@ public class ProductController {
   }
 
   @GetMapping("/category/{name}")
-  public ResponseEntity<List<ProductDTO>> getProductsByCategory(@PathVariable String name) {
+  public ResponseEntity<List<ProductDto>> getProductsByCategory(@PathVariable String name) {
     List<Product> products = productUseCase.getProductsByCategory(name);
-    List<ProductDTO> productsDTO = webMapper.toDTO(products);
+    List<ProductDto> productsDTO = webMapper.toDTO(products);
     return ResponseEntity.ok(productsDTO);
   }
 
   @GetMapping("/search")
-  public ResponseEntity<List<ProductDTO>> searchProducts(@RequestParam String term) {
+  public ResponseEntity<List<ProductDto>> searchProducts(@RequestParam String term) {
     List<Product> products = productUseCase.searchProductsByName(term);
-    List<ProductDTO> productsDTO = webMapper.toDTO(products);
+    List<ProductDto> productsDTO = webMapper.toDTO(products);
     return ResponseEntity.ok(productsDTO);
   }
 
   @GetMapping("/sorted")
-  public ResponseEntity<List<ProductDTO>> getAllProductsSorted() {
+  public ResponseEntity<List<ProductDto>> getAllProductsSorted() {
     List<Product> products = productUseCase.getAllProductsSorted();
-    List<ProductDTO> productsDTO = webMapper.toDTO(products);
+    List<ProductDto> productsDTO = webMapper.toDTO(products);
     return ResponseEntity.ok(productsDTO);
   }
 
   @GetMapping("/range")
-  public ResponseEntity<List<ProductDTO>> getProductsByPriceRange(
+  public ResponseEntity<List<ProductDto>> getProductsByPriceRange(
       @RequestParam BigDecimal min,
       @RequestParam BigDecimal max) {
     List<Product> products = productUseCase.getProductsByPriceRange(min, max);
-    List<ProductDTO> productsDTO = webMapper.toDTO(products);
+    List<ProductDto> productsDTO = webMapper.toDTO(products);
     return ResponseEntity.ok(productsDTO);
   }
 }

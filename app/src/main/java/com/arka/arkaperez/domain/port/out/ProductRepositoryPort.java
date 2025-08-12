@@ -10,9 +10,9 @@ public interface ProductRepositoryPort {
     Optional<Product> findById(Long id);
     Product save(Product product);
     void deleteById(Long id);
-    boolean existsById(Long id);
     List<Product> findByCategoryName(String categoryName);
     List<Product> findByNameContainingIgnoreCase(String name);
     List<Product> findByPriceRange(BigDecimal min, BigDecimal max);
+    boolean existsById(Long id);
 } 
 

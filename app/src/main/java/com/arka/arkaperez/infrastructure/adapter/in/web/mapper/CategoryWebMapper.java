@@ -1,7 +1,7 @@
 package com.arka.arkaperez.infrastructure.adapter.in.web.mapper;
 
 import com.arka.arkaperez.domain.model.Category;
-import com.arka.arkaperez.infrastructure.adapter.in.web.dto.CategoryDTO;
+import com.arka.arkaperez.infrastructure.adapter.in.web.dto.CategoryDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,14 +10,14 @@ import java.util.stream.Collectors;
 @Component
 public class CategoryWebMapper {
 
-  public CategoryDTO toDTO(Category category) {
+  public CategoryDto toDTO(Category category) {
     if (category == null) {
       return null;
     }
-    return new CategoryDTO(category.getId(), category.getName());
+    return new CategoryDto(category.getId(), category.getName());
   }
 
-  public Category toDomain(CategoryDTO dto) {
+  public Category toDomain(CategoryDto dto) {
     if (dto == null) {
       return null;
     }
@@ -28,7 +28,7 @@ public class CategoryWebMapper {
     return category;
   }
 
-  public List<CategoryDTO> toDTO(List<Category> categories) {
+  public List<CategoryDto> toDTO(List<Category> categories) {
     return categories.stream()
         .map(this::toDTO)
         .collect(Collectors.toList());

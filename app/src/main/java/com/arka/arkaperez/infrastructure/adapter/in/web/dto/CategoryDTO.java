@@ -1,12 +1,12 @@
 package com.arka.arkaperez.infrastructure.adapter.in.web.dto;
 
-public class CategoryDTO {
+public class CategoryDto {
     private Long id;
     private String name;
 
-    public CategoryDTO() {}
+    public CategoryDto() {}
 
-    public CategoryDTO(Long id, String name) {
+    public CategoryDto(Long id, String name) {
         this.id = id;
         this.name = name;
     }

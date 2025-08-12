@@ -3,7 +3,7 @@ package com.arka.arkaperez.infrastructure.adapter.in.web.mapper;
 import com.arka.arkaperez.domain.model.Category;
 import com.arka.arkaperez.domain.model.Product;
 import com.arka.arkaperez.domain.port.out.CategoryRepositoryPort;
-import com.arka.arkaperez.infrastructure.adapter.in.web.dto.ProductDTO;
+import com.arka.arkaperez.infrastructure.adapter.in.web.dto.ProductDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,13 +18,13 @@ public class ProductWebMapper {
     this.categoryRepository = categoryRepository;
   }
 
-  public ProductDTO toDTO(Product product) {
+  public ProductDto toDTO(Product product) {
 
     if (product == null) {
       return null;
     }
 
-    ProductDTO dto = new ProductDTO();
+    ProductDto dto = new ProductDto();
     dto.setId(product.getId());
     dto.setName(product.getName());
     dto.setDescription(product.getDescription());
@@ -35,7 +35,7 @@ public class ProductWebMapper {
     return dto;
   }
 
-  public Product toDomain(ProductDTO dto) {
+  public Product toDomain(ProductDto dto) {
         if (dto == null) {
             return null;
         }
@@ -57,7 +57,7 @@ public class ProductWebMapper {
         return product;
     }
 
-  public List<ProductDTO> toDTO(List<Product> products) {
+  public List<ProductDto> toDTO(List<Product> products) {
     return products.stream()
         .map(this::toDTO)
         .collect(Collectors.toList());
